@@ -5,7 +5,7 @@ const Title = ({children, className}:{
     className?: string; 
 })=>{
     return(
-        <h2 className ={cn("text-5xl font-extrabold text-black-slug capitalize", className)}>
+        <h2 className ={cn("text-4xl font-extrabold text-black-slug capitalize", className)}>
             {children}
         </h2>   
     );
