@@ -24,6 +24,7 @@ function LoginForm() {
   const {
     register,
     handleSubmit,
+    setFocus,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormValues>({
     resolver: zodResolver(loginSchema),
@@ -49,7 +50,13 @@ function LoginForm() {
         <CardDescription>Access your wallet securely</CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+        <form
+          onSubmit={handleSubmit(onSubmit, (errors) => {
+            const firstError = Object.keys(errors)[0] as keyof LoginFormValues;
+            setFocus(firstError);
+          })}
+          noValidate
+        >
           {serverError && (
             <div
               role="alert"
@@ -66,6 +73,8 @@ function LoginForm() {
               id="email"
               placeholder="hello@example.com"
               autoComplete="email"
+              aria-required="true"
+              aria-invalid={!!errors.email}
               aria-describedby={errors.email ? `email-error` : undefined}
               {...register("email")}
             />
@@ -84,6 +93,8 @@ function LoginForm() {
                 id="password"
                 placeholder="********"
                 autoComplete="current-password"
+                aria-required="true"
+                aria-invalid={!!errors.password}
                 aria-describedby={
                   errors.password ? "password-error" : undefined
                 }
@@ -120,6 +131,7 @@ function LoginForm() {
           <button
             type="submit"
             disabled={isSubmitting}
+            aria-busy={isSubmitting}
             className={`rounded-md w-full mt-8 bg-black-slug text-white p-2 rounded-p-2 hover:bg-chill-con-carne hoverEffect ${isSubmitting ? "bg-gray-400 cursor-not-allowed" : "bg-black-slug"}`}
           >
             {isSubmitting ? "Memasukkan data Anda..." : "Sign In"}
@@ -131,7 +143,7 @@ function LoginForm() {
         Belum punya akun?{" "}
         <Link
           href="/register"
-          className="text-black-slug hover:text-chill-con-carne hoverEffect"
+          className="m-2 text-black-slug hover:text-chill-con-carne hoverEffect"
         >
           {" "}
           Daftar sekarang!
