@@ -1,5 +1,12 @@
 const BASE_URL = process.env.NEXT_PUBLIC_API_URL
 
+export class AuthError extends Error {
+  constructor(public status: number) {
+    super('AUTH_ERROR')
+    this.name = 'AuthError'
+  }
+}
+
 export async function loginUser(email: string, password: string) {
   const res = await fetch(`${BASE_URL}/auth/login`, {
     method: 'POST',
@@ -9,15 +16,8 @@ export async function loginUser(email: string, password: string) {
   })
 
   if (!res.ok) {
-    throw new Error('AUTH_FAILED')
+    throw new AuthError(res.status)
   }
-}
-
-export class AuthError extends Error{
-    constructor(public status:number){
-        super('AUTH_ERROR')
-        this.name = 'AuthError'
-    }
 }
 
 export async function apiFetch(path: string, options?: RequestInit){

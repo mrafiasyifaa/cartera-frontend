@@ -14,7 +14,7 @@ import { loginSchema, LoginFormValues } from "@/lib/validations/auth";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
-import { loginUser } from "@/lib/api";
+import { loginUser, AuthError } from "@/lib/api";
 
 function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
@@ -36,8 +36,10 @@ function LoginForm() {
       await loginUser(data.email, data.password);
       router.push("/dashboard");
     } catch (error) {
-      if (error instanceof Error && error.message === "AUTH_FAILED") {
+      if (error instanceof AuthError && error.status === 401) {
         setServerError("Email atau password salah");
+      } else if (error instanceof AuthError && error.status === 429) {
+        setServerError("Terlalu banyak percobaan. Silahkan coba lagi nanti.");
       } else {
         setServerError("Terjadi kesalahan jaringan. Silahkan coba lagi.");
       }
