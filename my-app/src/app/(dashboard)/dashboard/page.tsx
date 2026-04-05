@@ -46,7 +46,7 @@ export default function DashboardPage() {
             <CardContent className="pt-6">
               <p className="font-medium text-black-slug">Send</p>
               <p className="text-sm text-peppered-pecan mt-1">
-                Kirim ETH ke alamat lain
+                Send ETH to another address
               </p>
             </CardContent>
           </Card>
@@ -56,12 +56,12 @@ export default function DashboardPage() {
       {/* Recent Transactions */}
       <div>
         <h2 className="text-base font-semibold text-black-slug mb-3">
-          Transaksi Terbaru
+          Recent Transactions
         </h2>
         <Card>
           <CardContent className="pt-6">
             <p className="text-sm text-peppered-pecan text-center py-4">
-              Belum ada transaksi
+              No transactions yet
             </p>
           </CardContent>
         </Card>
