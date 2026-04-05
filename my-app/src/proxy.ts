@@ -11,15 +11,15 @@ export function proxy(request: NextRequest) {
   const isProtected = PROTECTED_ROUTES.some((route) => pathname.startsWith(route))
   const isAuthRoute = AUTH_ROUTES.some((route) => pathname.startsWith(route))
 
-  if (isProtected && !token) {
-    return NextResponse.redirect(new URL('/login', request.url))
-  }
+  // if (isProtected && !token) {
+  //   return NextResponse.redirect(new URL('/login', request.url))
+  // }
 
-  if (isAuthRoute && token) {
-    return NextResponse.redirect(new URL('/dashboard', request.url))
-  }
+  // if (isAuthRoute && token) {
+  //   return NextResponse.redirect(new URL('/dashboard', request.url))
+  // }
 
-  return NextResponse.next()
+  // return NextResponse.next()
 }
 
 export const config = {
