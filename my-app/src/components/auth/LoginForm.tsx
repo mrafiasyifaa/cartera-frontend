@@ -106,11 +106,9 @@ function LoginForm() {
                 type="button"
                 onClick={() => setShowPassword((prev) => !prev)}
                 className="absolute right-2 top-1/2 -translate-y-1/2 text-sm text-gray-500 hover:text-black"
-                aria-label={
-                  showPassword ? "Sembunyikan password" : "Tampilkan password"
-                }
+                aria-label={showPassword ? "Hide password" : "Show password"}
               >
-                {showPassword ? "Sembunyikan" : "Tampilkan"}
+                {showPassword ? "Hide" : "Show"}
               </button>
             </div>
             {errors.password && (
@@ -126,7 +124,7 @@ function LoginForm() {
               href="/forgot-password"
               className="flex justify-end text-sm items-end text-black-slug hover:text-chill-con-carne hoverEffect"
             >
-              Lupa Password?
+              Forgot Password?
             </Link>
           </div>
 
@@ -142,13 +140,13 @@ function LoginForm() {
       </CardContent>
 
       <CardFooter>
-        Belum punya akun?{" "}
+        Don't have an account?{" "}
         <Link
           href="/register"
           className="m-2 text-black-slug hover:text-chill-con-carne hoverEffect"
         >
           {" "}
-          Daftar sekarang!
+          Register here!
         </Link>
       </CardFooter>
     </Card>
