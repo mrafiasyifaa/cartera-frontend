@@ -4,7 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const navLinks = [
-  { href: "/dashboard", label: "Overview" },
+  { href: "/dashboard", label: "Dashboard" },
   { href: "/dashboard/wallet", label: "Wallet" },
   { href: "/dashboard/send", label: "Send" },
 ];
@@ -22,9 +22,10 @@ function DashboardNav() {
               <Link
                 href={href}
                 className={`block px-4 py-2 rounded-md text-sm font-medium hoverEffect
-                  ${isActive
-                    ? "bg-cassiterite-brown text-white"
-                    : "text-black-slug hover:bg-casual-khaki"
+                  ${
+                    isActive
+                      ? "bg-cassiterite-brown text-white"
+                      : "text-black-slug hover:bg-casual-khaki"
                   }`}
                 aria-current={isActive ? "page" : undefined}
               >
